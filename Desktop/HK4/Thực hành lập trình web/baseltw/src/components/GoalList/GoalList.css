@@ -1,0 +1,23 @@
+.goal-list-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px; 
+    padding: 10px;
+}
+
+.goal-list-container > * {
+    width: calc(33.33% - 10px); 
+    box-sizing: border-box; 
+}
+
+@media (max-width: 768px) {
+    .goal-list-container > * {
+        width: calc(50% - 10px); 
+    }
+}
+
+@media (max-width: 480px) {
+    .goal-list-container > * {
+        width: 100%; 
+    }
+}
