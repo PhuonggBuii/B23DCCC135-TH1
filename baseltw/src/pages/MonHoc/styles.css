@@ -1,0 +1,61 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 25px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+  
+  .study-table {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .ant-table {
+    text-align: center;
+  }
+  
+  .ant-table th,
+  .ant-table td {
+    text-align: center !important;
+    vertical-align: middle !important;
+  }
+  
+  .ant-table-thead > tr > th {
+    background-color: #f0f2f5 !important;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .ant-table-tbody > tr > td {
+    font-size: 16px;
+    padding: 40px;
+  }
+  
+  .ant-table-tbody > tr:hover {
+    background-color: #fafafa;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+  }
+  
+  .modal-content .ant-select,
+  .modal-content .ant-input {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
