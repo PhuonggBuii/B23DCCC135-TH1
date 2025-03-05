@@ -60,6 +60,31 @@
 		component: './MucTieu',
 		icon: 'CheckCircleOutlined',  
 	},
+	{
+		path: '/tuti',
+		name: 'Tù Tì',
+		component: './TuTi',
+		icon: 'BulbOutlined',
+	},
+	{
+		path: '/QuanLyMonHoc',
+		name: 'Quản lý môn học',
+		component: './QuanLyMonHoc',
+		icon: 'UnorderedListOutlined',  
+	},
+	{
+		path: '/NganHangCauHoi',
+		name: 'Ngân hàng câu hỏi',
+		component: './NganHangCauHoi',
+		icon: 'BankOutlined',  
+	},
+	{
+		path: '/QuanLyDeThi',
+		name: 'Quản lý đề thi',
+		component: './QuanLyDeThi',
+		icon: 'FileTextOutlined',  
+	},
+	
 
 	// DANH MUC HE THONG
 	// {

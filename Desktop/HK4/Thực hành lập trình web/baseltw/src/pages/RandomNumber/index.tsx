@@ -14,7 +14,7 @@ const RandomNumber = () => {
   const startNewGame = () => {
     setRandomNumber(Math.floor(Math.random() * 100) + 1);
     setValue("");
-    setAttempts(10);
+    setAttempts(1);
     setGameOver(false);
     setResultMessage("");
     message.info("Game start! Hãy nhập số từ 1 đến 100.");
