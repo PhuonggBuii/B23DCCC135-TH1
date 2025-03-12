@@ -20,6 +20,7 @@ const QuanLyNhanVien: React.FC = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [currentEmployee, setCurrentEmployee] = useState<Employee | null>(null);
   const [form] = Form.useForm();
+  const [servicesList, setServicesList] = useState<{ id: number; name: string; price: number }[]>([]);
 
   useEffect(() => {
     const savedEmployees = JSON.parse(localStorage.getItem("employees") || "[]");
@@ -29,6 +30,12 @@ const QuanLyNhanVien: React.FC = () => {
   useEffect(() => {
     localStorage.setItem("employees", JSON.stringify(employees));
   }, [employees]);
+
+  useEffect(() => {
+    // Lấy danh sách dịch vụ từ localStorage
+    const savedServices = JSON.parse(localStorage.getItem("services") || "[]");
+    setServicesList(savedServices);
+  }, []);
 
   const showModal = () => {
     setVisible(true);
@@ -42,27 +49,26 @@ const QuanLyNhanVien: React.FC = () => {
   };
 
   const handleSave = () => {
-    form
-      .validateFields()
-      .then(values => {
-        const newEmployee: Employee = {
-          id: isEdit && currentEmployee ? currentEmployee.id : Date.now(),
-          name: values.name,
-          maxAppointmentsPerDay: values.maxAppointmentsPerDay,
-          workDays: values.workDays,
-          workHours: [values.startHour.format("HH:mm"), values.endHour.format("HH:mm")],
-          services: values.services,
-        };
-
-        if (isEdit) {
-          setEmployees(employees.map(emp => (emp.id === currentEmployee?.id ? newEmployee : emp)));
-        } else {
-          setEmployees([...employees, newEmployee]);
-        }
-
-        handleCancel();
-      })
-      .catch(info => console.log("Validation Failed:", info));
+    form.validateFields().then(values => {
+      const selectedServices = servicesList.filter(service => values.services.includes(service.name));
+  
+      const newEmployee: Employee = {
+        id: isEdit && currentEmployee ? currentEmployee.id : Date.now(),
+        name: values.name,
+        maxAppointmentsPerDay: values.maxAppointmentsPerDay,
+        workDays: values.workDays,
+        workHours: [values.startHour.format("HH:mm"), values.endHour.format("HH:mm")],
+        services: selectedServices.map(service => service.name), // Lưu danh sách dịch vụ theo tên
+      };
+  
+      if (isEdit) {
+        setEmployees(employees.map(emp => (emp.id === currentEmployee?.id ? newEmployee : emp)));
+      } else {
+        setEmployees([...employees, newEmployee]);
+      }
+  
+      handleCancel();
+    }).catch(info => console.log("Validation Failed:", info));
   };
 
   const handleDelete = (id: number) => {
@@ -153,9 +159,11 @@ const QuanLyNhanVien: React.FC = () => {
 
           <Form.Item name="services" label="Dịch vụ" rules={[{ required: true }]}>
             <Select mode="multiple" placeholder="Chọn dịch vụ">
-              <Option value="Cắt tóc">Cắt tóc</Option>
-              <Option value="Gội đầu">Gội đầu</Option>
-              <Option value="Massage">Massage</Option>
+                {servicesList.map(service => (
+                <Option key={service.id} value={service.name}>
+                    {service.name} - {service.price.toLocaleString()} VND
+                </Option>
+                ))}
             </Select>
           </Form.Item>
 

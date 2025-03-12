@@ -96,6 +96,12 @@
 		component: './QuanLyNhanVien',
 		icon: 'PlusOutlined',  
 	},
+	{
+		path: '/QuanLyDichVu',
+		name: 'Dich Vu',
+		component: './QuanLyDichVu',
+		icon: 'PlusOutlined',  
+	},
 
 
 

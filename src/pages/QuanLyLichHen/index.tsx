@@ -11,6 +11,7 @@ interface Employee {
   maxAppointmentsPerDay: number;
   workDays: string[];
   workHours: [string, string];
+  services: string[];
 }
 
 interface Appointment {
@@ -19,14 +20,22 @@ interface Appointment {
   date: string;
   time: string;
   employeeId: number;
+  service: string;
   status: string;
 }
+
 
 const QuanLyLichHen: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [form] = Form.useForm();
+  const [filteredEmployees, setFilteredEmployees] = useState<Employee[]>([]);
+
+  const handleServiceChange = (value: string) => {
+    setFilteredEmployees(employees.filter(emp => emp.services.includes(value)));
+    form.setFieldsValue({ employee: undefined });
+};
 
   useEffect(() => {
     setAppointments(JSON.parse(localStorage.getItem("appointments") || "[]"));
@@ -47,13 +56,14 @@ const QuanLyLichHen: React.FC = () => {
     if (!selectedEmployee) return;
 
     const newAppointment: Appointment = {
-      id: new Date().getTime(),
-      name: values.name,
-      date: values.date.format("YYYY-MM-DD"),
-      time: values.time.format("HH:mm"),
-      employeeId: values.employee,
-      status: "Chờ duyệt",
-    };
+        id: new Date().getTime(),
+        name: values.name,
+        date: values.date.format("YYYY-MM-DD"),
+        time: values.time.format("HH:mm"),
+        employeeId: values.employee,
+        service: values.service,
+        status: "Chờ duyệt",
+      };
 
     const dayMap: Record<string, string> = {
         Monday: "Thứ 2",
@@ -131,6 +141,12 @@ const QuanLyLichHen: React.FC = () => {
       render: (employeeId: number) => employees.find(emp => emp.id === employeeId)?.name || "N/A",
     },
     {
+        title: "Dịch vụ",
+        dataIndex: "service",
+        key: "service",
+        render: (service: string) => service || "N/A",
+    },
+    {
       title: "Trạng thái",
       dataIndex: "status",
       key: "status",
@@ -176,14 +192,23 @@ const QuanLyLichHen: React.FC = () => {
           <Form.Item name="time" label="Giờ hẹn" rules={[{ required: true, message: "Chọn giờ hẹn!" }]}>
             <TimePicker style={{ width: "100%" }} format="HH:mm" />
           </Form.Item>
-
-          <Form.Item name="employee" label="Nhân viên phục vụ" rules={[{ required: true, message: "Chọn nhân viên!" }]}>
-            <Select placeholder="Chọn nhân viên">
-              {employees.map(emp => (
-                <Option key={emp.id} value={emp.id}>{emp.name}</Option>
-              ))}
+          
+          <Form.Item name="service" label="Dịch vụ" rules={[{ required: true, message: "Chọn dịch vụ!" }]}>
+            <Select placeholder="Chọn dịch vụ" onChange={handleServiceChange}>
+                {Array.from(new Set(employees.flatMap(emp => emp.services))).map(service => (
+                <Option key={service} value={service}>{service}</Option>
+                ))}
             </Select>
           </Form.Item>
+
+          <Form.Item name="employee" label="Nhân viên phục vụ" rules={[{ required: true, message: "Chọn nhân viên!" }]}>
+            <Select placeholder="Chọn nhân viên" disabled={!filteredEmployees.length}>
+                {filteredEmployees.map(emp => (
+                <Option key={emp.id} value={emp.id}>{emp.name}</Option>
+                ))}
+            </Select>
+          </Form.Item>
+
 
           <Form.Item>
             <Button type="primary" htmlType="submit" style={{ marginRight: 8 }}>Xác nhận</Button>
