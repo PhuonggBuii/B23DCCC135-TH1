@@ -32,7 +32,6 @@ const QuanLyNhanVien: React.FC = () => {
   }, [employees]);
 
   useEffect(() => {
-    // Lấy danh sách dịch vụ từ localStorage
     const savedServices = JSON.parse(localStorage.getItem("services") || "[]");
     setServicesList(savedServices);
   }, []);

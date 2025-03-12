@@ -86,22 +86,35 @@
 	},
 	{
 		path: '/QuanLyLichHen',
-		name: 'Quản lý Lich Hen',
+		name: 'Quản lý Lịch Hẹn',
 		component: './QuanLyLichHen',
 		icon: 'PlusOutlined',  
 	},
 	{
 		path: '/QuanLyNhanVien',
-		name: 'Nhan Vien',
+		name: 'Nhân Viên',
 		component: './QuanLyNhanVien',
 		icon: 'PlusOutlined',  
 	},
 	{
 		path: '/QuanLyDichVu',
-		name: 'Dich Vu',
+		name: 'Dịch Vụ',
 		component: './QuanLyDichVu',
 		icon: 'PlusOutlined',  
 	},
+	{
+		path: '/QuanLyDanhGia',
+		name: 'Đánh Giá',
+		component: './QuanLyDanhGia',
+		icon: 'PlusOutlined',  
+	},
+	{
+		path: '/ThongKe',
+		name: 'Thống Kê',
+		component: './ThongKe',
+		icon: 'PlusOutlined',  
+	},
+	
 
 
 
