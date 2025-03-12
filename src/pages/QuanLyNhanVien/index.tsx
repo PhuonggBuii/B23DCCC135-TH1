@@ -11,6 +11,7 @@ interface Employee {
   maxAppointmentsPerDay: number;
   workDays: string[];
   workHours: [string, string];
+  services: string[];
 }
 
 const QuanLyNhanVien: React.FC = () => {
@@ -50,6 +51,7 @@ const QuanLyNhanVien: React.FC = () => {
           maxAppointmentsPerDay: values.maxAppointmentsPerDay,
           workDays: values.workDays,
           workHours: [values.startHour.format("HH:mm"), values.endHour.format("HH:mm")],
+          services: values.services,
         };
 
         if (isEdit) {
@@ -76,6 +78,7 @@ const QuanLyNhanVien: React.FC = () => {
       workDays: employee.workDays,
       startHour: dayjs(employee.workHours[0], "HH:mm"),
       endHour: dayjs(employee.workHours[1], "HH:mm"),
+      services: employee.services,
     });
     setVisible(true);
   };
@@ -91,6 +94,7 @@ const QuanLyNhanVien: React.FC = () => {
         <Table.Column title="Số khách tối đa/ngày" dataIndex="maxAppointmentsPerDay" key="maxAppointmentsPerDay" />
         <Table.Column title="Ngày làm việc" dataIndex="workDays" key="workDays" render={days => days.join(", ")} />
         <Table.Column title="Giờ làm việc" dataIndex="workHours" key="workHours" render={hours => `${hours[0]} - ${hours[1]}`} />
+        <Table.Column title="Dịch vụ" dataIndex="services" key="services" render={services => services.join(", ")} />
         <Table.Column
           title="Hành động"
           key="actions"
@@ -145,6 +149,14 @@ const QuanLyNhanVien: React.FC = () => {
             <Form.Item name="endHour" style={{ display: "inline-block", width: "48%" }} rules={[{ required: true }]}>
               <TimePicker format="HH:mm" />
             </Form.Item>
+          </Form.Item>
+
+          <Form.Item name="services" label="Dịch vụ" rules={[{ required: true }]}>
+            <Select mode="multiple" placeholder="Chọn dịch vụ">
+              <Option value="Cắt tóc">Cắt tóc</Option>
+              <Option value="Gội đầu">Gội đầu</Option>
+              <Option value="Massage">Massage</Option>
+            </Select>
           </Form.Item>
 
           <Form.Item>
