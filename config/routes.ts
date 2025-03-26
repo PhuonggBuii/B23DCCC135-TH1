@@ -1,4 +1,8 @@
-﻿export default [
+﻿import component from "@/locales/en-US/component";
+import { icons } from "antd/lib/image/PreviewGroup";
+import path from "path";
+
+export default [
 	{
 		path: '/user',
 		layout: false,
@@ -43,78 +47,115 @@
 		icon: 'UnorderedListOutlined',
 	},
 	{
-		path: '/random-number',
-		name: 'RandomNumber',
-		component: './RandomNumber',
-		icon: 'QuestionOutlined',
+		name:'TH1',
+		path:'/TH1',
+		icon:'QuestionOutlined',
+		routes: [
+			{
+				path: 'random-number',
+				name: 'RandomNumber',
+				component: './TH1/RandomNumber',
+				icon: 'QuestionOutlined',
+			},
+			{
+				path: 'monhoc',
+				name: 'Môn Học',
+				component: './TH1/MonHoc',
+				icon: 'PicRightOutlined',
+			},
+			{
+				path: 'goal',
+				name: 'Mục Tiêu',
+				component: './TH1/MucTieu',
+				icon: 'CheckCircleOutlined',  
+			},
+		]
 	},
 	{
-		path: '/monhoc',
-		name: 'Môn Học',
-		component: './MonHoc',
-		icon: 'PicRightOutlined',
+		name:'TH2',
+		path:'/TH2',
+		icon:'UnorderedListOutlined',
+		routes: [
+			{
+				path: 'tuti',
+				name: 'Tù Tì',
+				component: './TH2/TuTi',
+				icon: 'BulbOutlined',
+			},
+			{
+				path: 'QuanLyMonHoc',
+				name: 'Quản lý môn học',
+				component: './TH2/QuanLyMonHoc',
+				icon: 'UnorderedListOutlined',  
+			},
+			{
+				path: 'NganHangCauHoi',
+				name: 'Ngân hàng câu hỏi',
+				component: './TH2/NganHangCauHoi',
+				icon: 'BankOutlined',  
+			},
+			{
+				path: 'QuanLyDeThi',
+				name: 'Quản lý đề thi',
+				component: './TH2/QuanLyDeThi',
+				icon: 'FileTextOutlined',  
+			},
+		]
 	},
 	{
-		path: '/goal',
-		name: 'Mục Tiêu',
-		component: './MucTieu',
-		icon: 'CheckCircleOutlined',  
+		name: 'TH3',
+		path: '/Quanly',
+		icon: 'PlusOutlined',
+		routes: [
+			{
+				path: 'QuanLyLichHen',
+				name: 'Quản Lý Lịch Hẹn',
+				component: './QuanLy/QuanLyLichHen',  
+			},
+			{
+				path: 'QuanLyNhanVien',
+				name: 'Quản Lý Nhân Viên',
+				component: './QuanLy/QuanLyNhanVien',  
+			},
+			{
+				path: 'QuanLyDichVu',
+				name: 'Quản Lý Dịch Vụ',
+				component: './QuanLy/QuanLyDichVu', 
+			},
+			{
+				path: 'QuanLyDanhGia',
+				name: 'Quản Lý Đánh Giá',
+				component: './QuanLy/QuanLyDanhGia', 
+			},
+			{
+				path: 'ThongKe',
+				name: 'Thống Kê',
+				component: './QuanLy/ThongKe',  
+			},
+		]
 	},
 	{
-		path: '/tuti',
-		name: 'Tù Tì',
-		component: './TuTi',
-		icon: 'BulbOutlined',
+		name: 'Kiểm Tra Giữa Kỳ',
+		path: '/GK',
+		icon: 'PlusOutlined',
+		routes: [
+			{
+				path: 'DanhSachKhachHang',
+				name: 'Danh Sách Khách Hàng',
+				component: './GK/DanhSachKhachHang',  
+			},
+			{
+				path: 'DanhSachSanPham',
+				name: 'Danh Sách Sản Phẩm',
+				component: './GK/DanhSachSanPham',  
+			},
+			{
+				path: 'DanhSachDonHang',
+				name: 'Danh Sách Đơn Hàng',
+				component: './GK/DanhSachDonHang',  
+			},
+		]
 	},
-	{
-		path: '/QuanLyMonHoc',
-		name: 'Quản lý môn học',
-		component: './QuanLyMonHoc',
-		icon: 'UnorderedListOutlined',  
-	},
-	{
-		path: '/NganHangCauHoi',
-		name: 'Ngân hàng câu hỏi',
-		component: './NganHangCauHoi',
-		icon: 'BankOutlined',  
-	},
-	{
-		path: '/QuanLyDeThi',
-		name: 'Quản lý đề thi',
-		component: './QuanLyDeThi',
-		icon: 'FileTextOutlined',  
-	},
-	{
-		path: '/QuanLyLichHen',
-		name: 'Quản lý Lịch Hẹn',
-		component: './QuanLyLichHen',
-		icon: 'PlusOutlined',  
-	},
-	{
-		path: '/QuanLyNhanVien',
-		name: 'Nhân Viên',
-		component: './QuanLyNhanVien',
-		icon: 'PlusOutlined',  
-	},
-	{
-		path: '/QuanLyDichVu',
-		name: 'Dịch Vụ',
-		component: './QuanLyDichVu',
-		icon: 'PlusOutlined',  
-	},
-	{
-		path: '/QuanLyDanhGia',
-		name: 'Đánh Giá',
-		component: './QuanLyDanhGia',
-		icon: 'PlusOutlined',  
-	},
-	{
-		path: '/ThongKe',
-		name: 'Thống Kê',
-		component: './ThongKe',
-		icon: 'PlusOutlined',  
-	},
-	
 
 
 

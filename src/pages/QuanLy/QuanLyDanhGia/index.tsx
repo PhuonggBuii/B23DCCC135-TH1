@@ -53,12 +53,13 @@ const DanhGia: React.FC = () => {
 
     const columns = [
         { title: "Họ và Tên", dataIndex: "name", key: "name" },
-        { title: "Ngày hẹn", dataIndex: "date", key: "date" },
-        { title: "Dịch vụ", dataIndex: "service", key: "service" },
+        { title: "Ngày hẹn", dataIndex: "date", align:'center', key: "date" },
+        { title: "Dịch vụ", dataIndex: "service",align:'center', key: "service" },
         {
             title: "Đánh giá",
             dataIndex: "rating",
             key: "rating",
+            align:'center',
             render: (rating: number) => (
                 <Tag color="gold">
                     <StarOutlined /> {rating} sao
@@ -78,6 +79,16 @@ const DanhGia: React.FC = () => {
             ),
         },
         {
+            title: "Nhân viên được đánh giá",
+            dataIndex: "employeeId",
+            key: "employeeId",
+            align:'center',
+            render: (employeeId: number) => {
+                const employee = employees.find(emp => emp.id === employeeId);
+                return employee ? employee.name : "Không xác định";
+            },
+        },
+        {
             title: "Phản hồi của nhân viên",
             dataIndex: "employeeResponse",
             key: "employeeResponse",
@@ -92,6 +103,7 @@ const DanhGia: React.FC = () => {
         {
             title: "Phản hồi",
             key: "action",
+            align:'center',
             render: (_: any, record: Feedback) => (
                 <Button
                     type="link"
@@ -121,13 +133,18 @@ const DanhGia: React.FC = () => {
     });
 
     const ratingColumns = [
-        { title: "Nhân viên", dataIndex: "name", key: "name" },
-        { title: "Số đánh giá", dataIndex: "feedbackCount", key: "feedbackCount" },
+        { title: "Nhân viên",align:'center', dataIndex: "name", key: "name" },
+        { title: "Số đánh giá", dataIndex: "feedbackCount",align:'center', key: "feedbackCount" },
         {
             title: "Đánh giá trung bình",
             dataIndex: "rating",
             key: "rating",
-            render: (rating: number) => `${rating.toFixed(1)} sao`,
+            align:'center',
+            render: (rating: number) => (
+                <Tag color="gold">
+                    <StarOutlined /> {rating} sao
+                </Tag>
+            ),
         },
     ];
 

@@ -161,6 +161,7 @@ const QuanLyLichHen: React.FC = () => {
                 service: selectedAppointment.service,
                 rating: values.rating,
                 feedback: values.feedback,
+                employeeId: selectedAppointment.employeeId,
             };
 
             const storedFeedbacks = JSON.parse(localStorage.getItem("feedbacks") || "[]");

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StudyGoalsManager } from '../../services/MucTieu/study-goal-manager';
-import GoalList from '../../components/GoalList/GoalList';
-import { StudyGoal } from '../../models/muctieu/study-goal';
+import { StudyGoalsManager } from '../../../services/MucTieu/study-goal-manager';
+import GoalList from '../../../components/GoalList/GoalList';
+import { StudyGoal } from '../../../models/muctieu/study-goal';
 import './style.css';
 
 const App: React.FC = () => {
