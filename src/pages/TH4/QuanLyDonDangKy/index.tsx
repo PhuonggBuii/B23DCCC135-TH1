@@ -7,25 +7,24 @@ import {
   Tag,
   Space,
   message,
-  Pagination,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import dayjs from "dayjs";
 
-interface UngVien {
-  id: string;
-  hoTen: string;
-  email: string;
-  nguyenVong: string;
-  lyDo: string;
-  trangThai: "Pending" | "Approved" | "Rejected";
-  ghiChu?: string;
-}
+// interface QuanLyUngVien.UngVien {
+//   id: string;
+//   hoTen: string;
+//   email: string;
+//   nguyenVong: string;
+//   lyDo: string;
+//   trangThai: "Pending" | "Approved" | "Rejected";
+//   ghiChu?: string;
+// }
 
-const QuanLyUngVien: React.FC = () => {
-  const [ungVienList, setUngVienList] = useState<UngVien[]>([]);
+const QuanLyDonDangKy: React.FC = () => {
+  const [ungVienList, setUngVienList] = useState<QuanLyUngVien.UngVien[]>([]);
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState<UngVien | null>(null);
+  const [selected, setSelected] = useState<QuanLyUngVien.UngVien | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [note, setNote] = useState("");
   const [logs, setLogs] = useState<string[]>([]);
@@ -33,9 +32,13 @@ const QuanLyUngVien: React.FC = () => {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("dangKyList") || "[]");
     setUngVienList(data);
+
+    const logsFromStorage = JSON.parse(localStorage.getItem("logUngVien") || "[]");
+    setLogs(logsFromStorage);
+
   }, []);
 
-  const saveData = (data: UngVien[]) => {
+  const saveData = (data: QuanLyUngVien.UngVien[]) => {
     localStorage.setItem("dangKyList", JSON.stringify(data));
     setUngVienList(data);
   };
@@ -46,7 +49,7 @@ const QuanLyUngVien: React.FC = () => {
       uv.id === selected.id ? { ...uv, trangThai: status, ghiChu: note } : uv
     );
     saveData(updatedList);
-    const log = `Admin đã ${status} ứng viên ${selected.hoTen} vào lúc ${dayjs().format("HH:mm DD/MM/YYYY")} với lý do: ${note}`;
+    const log = `Admin đã ${status} ứng viên ${selected.hoTen}  vào lúc ${dayjs().format("HH:mm DD/MM/YYYY")} với lý do: ${note}`;
     const newLogs = [...logs, log];
     setLogs(newLogs);
     localStorage.setItem("logUngVien", JSON.stringify(newLogs));
@@ -62,14 +65,15 @@ const QuanLyUngVien: React.FC = () => {
       uv.nguyenVong.toLowerCase().includes(search.toLowerCase())
   );
 
-  const columns: ColumnsType<UngVien> = [
+  const columns: ColumnsType<QuanLyUngVien.UngVien> = [
     { title: "Họ tên", dataIndex: "hoTen", sorter: (a, b) => a.hoTen.localeCompare(b.hoTen) },
     { title: "Email", dataIndex: "email", sorter: (a, b) => a.email.localeCompare(b.email) },
-    { title: "Nguyện vọng", dataIndex: "nguyenVong" },
+    { title: "Nguyện vọng", dataIndex: "nguyenVong", align:"center" },
     { title: "Lý do", dataIndex: "lyDo" },
     {
         title: "Trạng thái",
         dataIndex: "trangThai",
+        align: 'center',
         render: (value) => {
             let color = value === "Approved" ? "green" : value === "Rejected" ? "red" : "gold";
             return <Tag color={color}>{value}</Tag>;
@@ -83,6 +87,7 @@ const QuanLyUngVien: React.FC = () => {
     },
     {
       title: "Hành động",
+      align: 'center',
       render: (_, record) => (
         <Space>
           <Button
@@ -111,8 +116,26 @@ const QuanLyUngVien: React.FC = () => {
             columns={columns}
             dataSource={filteredList}
             rowKey="id"
-            pagination={{ pageSize: 5 }}
+            pagination={{
+              pageSizeOptions: ['5', '10', '15'],
+              showSizeChanger: true,
+              defaultPageSize: 5,
+            }}
         />
+        <div style={{ marginTop: 32 }}>
+          <h3>Nhật ký thao tác</h3>
+          <div style={{ maxHeight: 200, overflowY: "auto", background: "#fafafa", padding: 12, border: "1px solid #ddd", borderRadius: 8 }}>
+            {logs.length === 0 ? (
+              <p>Chưa có log nào.</p>
+            ) : (
+              <ul style={{ paddingLeft: 20 }}>
+                {logs.map((log, index) => (
+                  <li key={index}>{log}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
 
     <Modal
         destroyOnClose
@@ -168,4 +191,4 @@ const QuanLyUngVien: React.FC = () => {
   );
 };
 
-export default QuanLyUngVien;
+export default QuanLyDonDangKy;

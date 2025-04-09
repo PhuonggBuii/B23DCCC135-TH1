@@ -171,6 +171,16 @@ export default [
 				name: 'Quản Lý Đơn Đăng Ký',
 				component: './TH4/QuanLyDonDangKy',  
 			},
+			{
+				path: 'QuanLyThanhVien',
+				name: 'Quản Lý Thành Viên',
+				component: './TH4/QuanLyThanhVien',  
+			},
+			{
+				path: 'Thong ke',
+				name: 'Thống Kê',
+				component: './TH4/ThongKe',  
+			},
 		]
 	},
 
