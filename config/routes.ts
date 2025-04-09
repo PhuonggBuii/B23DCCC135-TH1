@@ -156,6 +156,23 @@ export default [
 			},
 		]
 	},
+	{
+		name: 'TH4',
+		path: '/TH4',
+		icon: 'PlusOutlined',
+		routes: [
+			{
+				path: 'UngVienDangKy',
+				name: 'Ứng Viên Đăng Ký',
+				component: './TH4/UngVienDangKy',  
+			},
+			{
+				path: 'QuanLyDonDangKy',
+				name: 'Quản Lý Đơn Đăng Ký',
+				component: './TH4/QuanLyDonDangKy',  
+			},
+		]
+	},
 
 
 
