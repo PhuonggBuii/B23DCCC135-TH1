@@ -48,10 +48,10 @@ const UngVienDangKy: React.FC = () => {
           rules={[{ required: true, message: "Vui lòng chọn nguyện vọng" }]}
         >
           <Select placeholder="Chọn nguyện vọng">
-            <Option value="cc">Chủ công</Option>
-            <Option value="ch">Chuyền hai</Option>
-            <Option value="li">Libero</Option>
-            <Option value="me">Media</Option>
+            <Option value="Chủ công">Chủ công</Option>
+            <Option value="Chuyền hai">Chuyền hai</Option>
+            <Option value="Libero">Libero</Option>
+            <Option value="Media">Media</Option>
           </Select>
         </Form.Item>
 
