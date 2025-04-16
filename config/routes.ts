@@ -183,6 +183,28 @@ export default [
 			},
 		]
 	},
+	{
+		name: 'TH5',
+		path: '/TH5',
+		icon: 'CarOutlined',
+		routes: [
+			{
+				path: 'KhamPhaDiemDen',
+				name: 'Khám phá điểm đến',
+				component: './TH5/KhamPhaDiemDen',  
+			},
+			{
+				path: 'LichTrinh',
+				name: 'Lịch trình',
+				component: './TH5/LichTrinh',  
+			},
+			{
+				path: 'Admin',
+				name: 'Admin',
+				component: './TH5/Admin',  
+			},
+		]
+	},
 
 
 
