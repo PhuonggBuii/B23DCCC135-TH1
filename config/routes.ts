@@ -205,6 +205,12 @@ export default [
 			},
 		]
 	},
+	{
+		path: '/TH6-2',
+		name: 'TH6-2',
+		component: './TH6-2',
+		icon: 'ArrowsAltOutlined',
+	},
 
 
 
