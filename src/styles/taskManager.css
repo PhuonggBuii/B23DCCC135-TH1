@@ -1,0 +1,31 @@
+.task-manager-container {
+    background-color: #f0f2f5;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s;
+}
+
+.task-manager-container:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.task-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.task-form .ant-form-item {
+    margin-bottom: 0;
+}
+
+.task-table .ant-table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ant-btn {
+    border-radius: 6px;
+}
